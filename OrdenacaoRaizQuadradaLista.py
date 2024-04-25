@@ -1,3 +1,7 @@
+import math
+import time
+import random
+
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -46,16 +50,16 @@ def OrdenacaoRaizQuadrada(lista):
                 sub_listas.remove(sub_lista_elemento)
     return lista_resultado
 
-import math
-import random
 
-lista_teste = []
-for i in range(0, 10000000):
-    lista_teste.append(random.randint(-1000, 1000))
-    
-print(OrdenacaoRaizQuadrada(lista_teste))
-
-#10^4 insta com o pypy3
-#10^5 insta com o pypy3
-#10^6 2 segundos o pypy3
-#10^7 
+tamanho = 10**6
+tempoTotal = [0] * 16
+for i in range(16):
+    v = random.sample(range(0, tamanho), tamanho)
+    inicioTempo = time.time()
+    OrdenacaoRaizQuadrada(v)
+    fimTempo = time.time()
+    tempoTotal[i] = fimTempo - inicioTempo
+    print(i+1)
+print(tempoTotal)
+mediaTempo = sum(tempoTotal)/16
+print(mediaTempo)
